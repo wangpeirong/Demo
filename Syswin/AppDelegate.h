@@ -12,6 +12,10 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (assign, nonatomic)float autoSizeScaleX;
+@property (assign, nonatomic)float autoSizeScaleY;
+@property (nonatomic,strong)UINavigationController *navigation;
+
 
 @end
 

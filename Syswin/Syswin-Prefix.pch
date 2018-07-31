@@ -1,0 +1,65 @@
+//
+//  Syswin-Prefix.pch
+//  Syswin
+//
+//  Created by wangpeirong on 15/5/28.
+//  Copyright (c) 2015年 wangpeirong. All rights reserved.
+//
+
+#ifndef Syswin_Syswin_Prefix_pch
+#define Syswin_Syswin_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "GlobalDefine.h"
+#import "AdaptiveClass.h"
+#import "SysPublicClass.h"
+#endif
+
+//网址前缀
+#define kRootPath @"http://api.51youpu.com"
+
+
+//RBG color
+#define RGB(r,g,b)                  [UIColor colorWithRed:(((float)(r))/255.0) green:(((float)(g))/255.0) blue:(((float)(b))/255.0) alpha:1.0]
+#define RGBA(r,g,b,a)               [UIColor colorWithRed:(((float)(r))/255.0) green:(((float)(g))/255.0) blue:(((float)(b))/255.0) alpha:a]
+
+#define kTextColorForProject        RGB(114, 113, 115)  //框架文字颜色()
+#define kBackGroundColor            RGB(196, 239, 202)  //框架背景颜色(豆沙绿)
+
+#define kYellowColor                RGB(242, 165, 31 )  //橘黄色
+#define kGreenColor                 RGB(118, 190, 52 )  //绿色
+#define kCyanColor                  RGB(71, 195, 203 )  //蓝色
+
+
+#define UserDefaults                [NSUserDefaults standardUserDefaults]
+
+#define IOSVersion                  [[[UIDevice currentDevice] systemVersion] floatValue]
+#define IsiOS8Later                 (IOSVersion >= 8.0)
+#define IsIphone5Later              (([[UIScreen mainScreen] bounds].size.height - 500) >= 0)
+#define IsIOS7                      ([[[UIDevice currentDevice] systemVersion] floatValue] >=7.0 ? YES : NO)
+
+//判断是否是iPad
+#define isPad_SC                    (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+//导航条的高度
+#define UPHEIGHT                    (64)
+#define TABLE_Y                     (64)
+
+#define SCALE                       ScreenHeight/568.0
+
+#define MainScreenHeight            ([UIScreen mainScreen].bounds.size.height)
+#define MainScreenWidth             ([UIScreen mainScreen].bounds.size.width)
+///屏幕视觉宽高
+#define ScreenWidth                 (isPad_SC?1024:MainScreenWidth)
+#define ScreenHeight                (isPad_SC?768:MainScreenHeight)
+
+
+#define CONFIRM                     @"确定"
+#define CANCLE                      @"取消"
+

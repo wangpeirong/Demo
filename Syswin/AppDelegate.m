@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "DCIntrospect.h"
+#import "MobClick.h"
 
 @interface AppDelegate ()
 
@@ -17,9 +20,40 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    //调屏
+    [[DCIntrospect sharedIntrospector] start];
+    
+    //屏幕适配
+    [self callAdaptiveFunction];
+    
+    //友盟统计
+    [MobClick startWithAppkey:@"xxxxxxxxxxxxxxx" reportPolicy:BATCH   channelId:@"Web"];
+    [MobClick setLogEnabled:YES];
+    
+    LoginViewController *loginVc = [[LoginViewController alloc]init];
+    self.navigation = [[UINavigationController alloc] initWithRootViewController:loginVc];
+    self.window.rootViewController = _navigation;
+
+    [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
+- (void)callAdaptiveFunction
+{
+    AppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    
+    if(ScreenHeight > 480){
+        myDelegate.autoSizeScaleX = ScreenWidth/320;
+        myDelegate.autoSizeScaleY = ScreenHeight/568;
+    }else{
+        myDelegate.autoSizeScaleX = 1.0;
+        myDelegate.autoSizeScaleY = 1.0;
+    }
 
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
